@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="48b9a499-4226-476d-bd79-8b0faec5938a" ChangeDateTime="04/07/2022 22:53:36">
+    <Property Name="ElementName" Value="[dbo].[Cola].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Cola]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Numero" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dd968690-2223-4018-ba3b-bbf1b1f5feb7" ChangeDateTime="04/07/2022 22:54:25">
+    <Property Name="ElementName" Value="[dbo].[Cola].[TiempoAtencion]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Cola]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MinutosAtencion" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6625e2e1-113c-402f-bf9b-bfed26374191" ChangeDateTime="04/07/2022 22:58:12">
+    <Property Name="ElementName" Value="[dbo].[Cola].[Numero]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Cola]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NumeroCola" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="37de8c4e-2e0d-4e0e-9f58-3c6cd2d965cc" ChangeDateTime="04/07/2022 22:58:44">
+    <Property Name="ElementName" Value="[dbo].[Cliente].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Cliente]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NumeroCliente" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c16234ea-9a90-4114-9738-fb42f26168f7" ChangeDateTime="04/07/2022 22:59:16">
+    <Property Name="ElementName" Value="[dbo].[Cliente].[NumeroCliente]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Cliente]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="numeroCliente" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f70de6a3-6704-45f1-a14e-f13236aa0b95" ChangeDateTime="04/07/2022 22:59:27">
+    <Property Name="ElementName" Value="[dbo].[Cola].[MinutosAtencion]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Cola]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="minutosAtencion" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="338b1f7e-c8c3-4ea4-8628-75cb4505cdf5" ChangeDateTime="04/07/2022 22:59:31">
+    <Property Name="ElementName" Value="[dbo].[Cola].[NumeroCola]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Cola]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="numeroCola" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="07d1d8da-d0da-493d-a4b6-15073134fea7" ChangeDateTime="04/07/2022 23:00:38">
+    <Property Name="ElementName" Value="[dbo].[Cliente].[id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Cliente]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="numeroCola" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b3739a7b-dc23-4b35-824c-a5dbb8ed16bb" ChangeDateTime="04/07/2022 23:06:34">
+    <Property Name="ElementName" Value="[dbo].[FK_Cliente_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Cliente]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Cliente_Cola]" />
+  </Operation>
+</Operations>

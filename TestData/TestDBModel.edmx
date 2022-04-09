@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TestDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="numeroCliente" />
+          </Key>
+          <Property Name="numeroCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numeroCola" Type="int" Nullable="false" />
+          <Property Name="id" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="horaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="Cola">
+          <Key>
+            <PropertyRef Name="numeroCola" />
+          </Key>
+          <Property Name="numeroCola" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="minutosAtencion" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cliente_Cola">
+          <End Role="Cola" Type="Self.Cola" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cola">
+              <PropertyRef Name="numeroCola" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="numeroCola" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_TURNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="TestDBModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cola" EntityType="Self.Cola" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cliente_Cola" Association="Self.FK_Cliente_Cola">
+            <End Role="Cola" EntitySet="Cola" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="numeroCliente" />
+          </Key>
+          <Property Name="numeroCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numeroCola" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="horaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cola" Relationship="Self.FK_Cliente_Cola" FromRole="Cliente" ToRole="Cola" />
+        </EntityType>
+        <EntityType Name="Cola">
+          <Key>
+            <PropertyRef Name="numeroCola" />
+          </Key>
+          <Property Name="numeroCola" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="minutosAtencion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_Cliente_Cola" FromRole="Cola" ToRole="Cliente" />
+        </EntityType>
+        <Association Name="FK_Cliente_Cola">
+          <End Role="Cola" Type="Self.Cola" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cola">
+              <PropertyRef Name="numeroCola" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="numeroCola" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
+          <EntitySet Name="Colas" EntityType="Self.Cola" />
+          <AssociationSet Name="FK_Cliente_Cola" Association="Self.FK_Cliente_Cola">
+            <End Role="Cola" EntitySet="Colas" />
+            <End Role="Cliente" EntitySet="Clientes" />
+          </AssociationSet>
+          <FunctionImport Name="SP_TURNO" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestDBModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="TestDBModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="numeroCliente" ColumnName="numeroCliente" />
+                <ScalarProperty Name="numeroCola" ColumnName="numeroCola" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="horaRegistro" ColumnName="horaRegistro" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colas">
+            <EntityTypeMapping TypeName="TestDBModel.Cola">
+              <MappingFragment StoreEntitySet="Cola">
+                <ScalarProperty Name="numeroCola" ColumnName="numeroCola" />
+                <ScalarProperty Name="minutosAtencion" ColumnName="minutosAtencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_TURNO" FunctionName="TestDBModel.Store.SP_TURNO" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
